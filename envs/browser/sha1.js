@@ -1,5 +1,11 @@
 async function SHA1(data) {
-  return new Uint8Array(await crypto.subtle.digest('SHA-1', data));
+  data = new Uint8Array(data);
+
+  const hash = crypto.createHash('sha1');
+
+  hash.update(data);
+
+  return new Uint8Array(hash.digest());
 }
 
 module.exports = SHA1;

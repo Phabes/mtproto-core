@@ -1,5 +1,11 @@
 async function SHA256(data) {
-  return new Uint8Array(await crypto.subtle.digest('SHA-256', data));
+  data = new Uint8Array(data);
+
+  const hash = crypto.createHash('sha256');
+
+  hash.update(data);
+
+  return new Uint8Array(hash.digest());
 }
 
 module.exports = SHA256;
